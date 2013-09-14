@@ -4,6 +4,8 @@
 High-level API for creating secondary indexes using
 [level-secondary](https://github.com/juliangruber/level-secondary).
 
+[![build status](https://secure.travis-ci.org/juliangruber/level-sec.png)](http://travis-ci.org/juliangruber/level-sec)
+
 ## Example
 
 Index posts by title and body length, then query for them:
