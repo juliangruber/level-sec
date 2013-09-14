@@ -1,0 +1,33 @@
+{
+  "name": "level-sec",
+  "description": "High-level API for creating secondary indexes",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/juliangruber/level-sec.git"
+  },
+  "homepage": "https://github.com/juliangruber/level-sec",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js"
+  },
+  "dependencies": {
+    "level-secondary": "~1.0.0"
+  },
+  "devDependencies": {
+    "tape": "~1.1.0",
+    "level-sublevel": "~5.1.1",
+    "level-test": "~1.5.1"
+  },
+  "keywords": [
+    "level",
+    "index",
+    "secondary"
+  ],
+  "author": {
+    "name": "Julian Gruber",
+    "email": "mail@juliangruber.com",
+    "url": "http://juliangruber.com"
+  },
+  "license": "MIT"
+}
