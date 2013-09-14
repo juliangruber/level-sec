@@ -4,6 +4,7 @@
  */
 
 var Secondary = require('level-secondary');
+var access = require('deep-access');
 
 /**
  * Expose `Index`.
@@ -24,16 +25,21 @@ function Index(db) {
 }
 
 /**
- * Index by `name` and optionally `fn`.
+ * Index by `name` and `props`.
  *
  * @param {Object} name
- * @param {Function=} fn
+ * @param {Array[Object]} props
  * @return {Index}
  */
 
-Index.prototype.by = function(name, fn) {
-  var prop = 'by' + name[0].toUpperCase() + name.slice(1);
-  this.db[prop] = Secondary(this.db, name, fn);
+Index.prototype.by = function(name, props) {
+  this.db['by' + name] = Secondary(this.db, name, function(value) {
+    var segs = [];
+    props.forEach(function(prop) {
+      segs.push(access(value, prop));
+    });
+    return segs.join('!');
+  });
   return this;
 };
 

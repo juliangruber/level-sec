@@ -12,7 +12,8 @@
     "test": "tape test.js"
   },
   "dependencies": {
-    "level-secondary": "~1.0.0"
+    "level-secondary": "~1.0.0",
+    "deep-access": "0.0.1"
   },
   "devDependencies": {
     "tape": "~1.1.0",

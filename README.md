@@ -11,51 +11,30 @@ High-level API for creating secondary indexes using
 Index posts by title and body length, then query for them:
 
 ```js
-var level = require('level');
 var Index = require('level-sec');
+var level = require('level');
 var sub = require('level-sublevel');
 
-var db = sub(level(__dirname + '/db', {
-  valueEncoding: 'json'
-}));
+var db = sub(level('db', { valueEncoding: 'json' }));
 
 var posts = Index(db.sublevel('posts'))
-  .by('title')
-  .by('length', function(post) { return post.body.length })
+  .by('Title', ['title'])
+  .by('Length', ['body.length'])
+  .by('Author', ['author', 'title'])
   .db;
 
-posts.put('1337', {
+var post = {
   title: 'a title',
-  body: 'lorem ipsum'
-}, function(err) {
+  body: 'lorem ipsum',
+  author: 'julian'
+};
+
+posts.put('1337', post, function(err) {
   if (err) throw err;
 
-  posts.byTitle.get('a title', function(err, post) {
-    if (err) throw err;
-    console.log('get', post);
-
-    posts.del('1337', function(err) {
-      if (err) throw err;
-      posts.byTitle.get('a title', function(err) {
-        console.log(err.name)
-      });
-    });
-  });
-
-  posts.byLength.createReadStream({
-    start: 10,
-    end: 20
-  }).on('data', console.log.bind(console, 'read'));
-
-  posts.byLength.createKeyStream({
-    start: 10,
-    end: 20
-  }).on('data', console.log.bind(console, 'key'));
-
-  posts.byLength.createValueStream({
-    start: 10,
-    end: 20
-  }).on('data', console.log.bind(console, 'value'));
+  posts.byTitle.get('a title', console.log);
+  posts.byLength.get('11', console.log);
+  posts.byAuthor.get('julian!a title', console.log);
 });
 ```
 
@@ -65,14 +44,18 @@ posts.put('1337', {
 
 Index `db`.
 
-### Index#by(name[, fn])
+### Index#by(name, props)
 
-Index by property `name` and optional function `fn`.
-See [level-secondary](https://github.com/juliangruber/level-secondary).
+Create an index called `name` and index by `props`.
 
 ### Index.db
 
 The underlying `db`.
+
+### Index.db.by{Name}.get(key[, opts], fn)
+### Index.db.by{Name}.create{Key,Value,Read}Stream([opts])
+
+See [level-secondary](https://github.com/juliangruber/level-secondary).
 
 ## Installation
 
