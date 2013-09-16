@@ -1,4 +1,3 @@
-
 # level-sec
 
 High-level API for creating secondary indexes using
@@ -47,6 +46,12 @@ Index `db`.
 ### Index#by(name, props)
 
 Create an index called `name` and index by `props`.
+
+`props` should be an array of strings that each name a property.
+Deep object access is enabled via
+[deep-access](https://github.com/juliangruber/deep-access). Use multiple
+properties if you can't guarantee the uniqueness of the first propertie's
+value.
 
 ### Index.db
 
