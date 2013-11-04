@@ -9,7 +9,7 @@ test('sec', function(t) {
   var db = sub(level('db', { valueEncoding: 'json' }));
 
   var posts = Index(db.sublevel('posts'))
-    .by('Title', ['title'])
+    .by('Title', 'title')
     .by('Length', ['body.length'])
     .by('Author', ['author', 'title'])
     .db;

@@ -28,11 +28,13 @@ function Index(db) {
  * Index by `name` and `props`.
  *
  * @param {Object} name
- * @param {Array[Object]} props
+ * @param {Array[Object]|Object} props
  * @return {Index}
  */
 
 Index.prototype.by = function(name, props) {
+  if (!Array.isArray(props)) props = [props];
+
   this.db['by' + name] = Secondary(this.db, name, function(value) {
     var segs = [];
     props.forEach(function(prop) {

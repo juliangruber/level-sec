@@ -17,8 +17,8 @@ var sub = require('level-sublevel');
 var db = sub(level('db', { valueEncoding: 'json' }));
 
 var posts = Index(db.sublevel('posts'))
-  .by('Title', ['title'])
-  .by('Length', ['body.length'])
+  .by('Title', 'title')
+  .by('Length', 'body.length')
   .by('Author', ['author', 'title'])
   .db;
 
@@ -47,7 +47,7 @@ Index `db`.
 
 Create an index called `name` and index by `props`.
 
-`props` should be an array of strings that each name a property.
+`props` should be a string or an array of strings that each name a property.
 Deep object access is enabled via
 [deep-access](https://github.com/juliangruber/deep-access). Use multiple
 properties if you can't guarantee the uniqueness of the first property's
