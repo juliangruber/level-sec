@@ -1,7 +1,7 @@
 # level-sec
 
 High-level API for creating secondary indexes using
-[level-secondary](https://github.com/juliangruber/level-secondary).
+[level-secondary](https://github.com/juliangruber/level-secondary). Also works over [multilevel](https://github.com/juliangruber/multilevel).
 
 [![build status](https://secure.travis-ci.org/juliangruber/level-sec.png)](http://travis-ci.org/juliangruber/level-sec)
 

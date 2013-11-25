@@ -22,6 +22,7 @@ module.exports = Index;
 function Index(db) {
   if (!(this instanceof Index)) return new Index(db);
   this.db = db;
+  this.db.methods = this.db.methods || {};
 }
 
 /**
@@ -35,13 +36,19 @@ function Index(db) {
 Index.prototype.by = function(name, props) {
   if (!Array.isArray(props)) props = [props];
 
-  this.db['by' + name] = Secondary(this.db, name, function(value) {
+  var sec = Secondary(this.db, name, function(value) {
     var segs = [];
     props.forEach(function(prop) {
       segs.push(access(value, prop));
     });
     return segs.join('!');
   });
+  
+  this.db['by' + name] = sec;
+  this.db.methods['by' + name] = {
+    type: 'object',
+    methods: sec.manifest.methods
+  };
   return this;
 };
 
