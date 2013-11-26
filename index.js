@@ -39,7 +39,12 @@ Index.prototype.by = function(name, props) {
   var sec = Secondary(this.db, name, function(value) {
     var segs = [];
     props.forEach(function(prop) {
-      segs.push(access(value, prop));
+      try {
+        var seg = access(value, prop);
+      } catch (e) {
+        return;
+      }
+      segs.push(seg);
     });
     return segs.join('!');
   });

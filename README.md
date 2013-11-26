@@ -53,6 +53,8 @@ Deep object access is enabled via
 properties if you can't guarantee the uniqueness of the first property's
 value.
 
+If a property doesn't exist, e.g. if you want to index by `body.length` but there is no key `body`, it will be ignored.
+
 ### Index.db
 
 The underlying `db`.
