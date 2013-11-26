@@ -18,8 +18,8 @@
   "devDependencies": {
     "tape": "~1.1.0",
     "level-sublevel": "~5.1.1",
-    "level-test": "~1.5.1",
-    "multilevel": "git://github.com/juliangruber/multilevel#nested-objects"
+    "multilevel": "git://github.com/juliangruber/multilevel#nested-objects",
+    "memdb": "~0.1.0"
   },
   "keywords": [
     "level",

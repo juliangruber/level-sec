@@ -1,4 +1,4 @@
-var level = require('level-test')();
+var MemDB = require('memdb');
 var Index = require('..');
 var sub = require('level-sublevel');
 var test = require('tape');
@@ -7,7 +7,7 @@ var multilevel = require('multilevel');
 test('multilevel', function(t) {
   t.plan(7);
 
-  var db = sub(level('db', { valueEncoding: 'json' }));
+  var db = sub(MemDB({ valueEncoding: 'json' }));
   var posts = Index(db.sublevel('posts'))
     .by('Title', 'title')
     .by('Length', ['body.length'])
