@@ -64,6 +64,24 @@ The underlying `db`.
 
 See [level-secondary](https://github.com/juliangruber/level-secondary).
 
+## Multilevel
+
+Populate `db.methods` with the manifests of each indexed db.`object`:
+
+```js
+var index = require('level-sec');
+var createManifest = require('level-manifest');
+
+db.methods = {};
+db.posts = index(db.sublevel('posts'))
+  .by('Slug', ['slug'])
+  .db;
+db.methods.posts = {
+  type: 'object',
+  methods: createManifest(db.posts).methods 
+};
+```
+
 ## Installation
 
 With [npm](https://npmjs.org) do:
