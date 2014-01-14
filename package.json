@@ -19,7 +19,8 @@
     "tape": "~1.1.0",
     "level-sublevel": "~5.1.1",
     "multilevel": "git://github.com/juliangruber/multilevel#nested-objects",
-    "memdb": "~0.1.0"
+    "memdb": "~0.1.0",
+    "level-manifest": "~1.2.0"
   },
   "keywords": [
     "level",
