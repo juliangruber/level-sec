@@ -18,7 +18,7 @@ var db = sub(level('db', { valueEncoding: 'json' }));
 
 var posts = Index(db.sublevel('posts'))
   .by('Title', 'title')
-  .by('Length', 'body.length')
+  .by('Length', ['body.length', 'title'])
   .by('Author', ['author', 'title'])
   .db;
 
